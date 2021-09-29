@@ -10,6 +10,9 @@ module.exports = {
                 truck: "url('icons/truck.svg')",
             },
         },
+        boxShadow: {
+            sm: "4px 4px 0px 0px rgba(0,0,0,0.60)",
+        },
     },
     variants: {
         extend: {},

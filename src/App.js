@@ -107,7 +107,7 @@ function App() {
             <main className="flex-grow flex justify-center items-start pt-12 border-2 border-gray-600">
                 <div
                     id="workbench"
-                    className="w-80 flex flex-col justify-start items-center border-2 border-black rounded-t-lg overflow-hidden"
+                    className="w-72 flex flex-col justify-start items-center border-2 border-black shadow-sm rounded-lg overflow-hidden"
                 >
                     <div
                         id="workbench-header"
@@ -117,19 +117,19 @@ function App() {
                     </div>
                     <div
                         id="workbench-body"
-                        className="flex flex-col gap-8 justify-center p-12"
+                        className="w-full flex flex-col gap-8 justify-center p-12"
                     >
                         <input
                             type="text"
                             id="inputField"
                             className="input-simple"
-                            placeholder="input"
+                            placeholder="Input"
                             name="inputField"
                             defaultValue=""
                         />
                         <div
-                            id="buttonContainer"
-                            className="flex w-full justify-between"
+                            id="button-container"
+                            className="w-full flex justify-center gap-4"
                         >
                             {allFeatures.map((feature, index) => (
                                 <ControlButton
@@ -148,7 +148,7 @@ function App() {
                             type="text"
                             id="outputField"
                             className="input-simple"
-                            placeholder="output"
+                            placeholder="Output"
                             name="outputField"
                             defaultValue=""
                         />
