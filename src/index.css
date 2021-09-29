@@ -14,6 +14,9 @@
 
 @tailwind components;
 @layer components {
+    .input-simple {
+        @apply w-full text-sm text-center border border-gray-500 p-2 rounded-md;
+    }
     .icon-github {
         @apply bg-github bg-contain;
     }
@@ -26,8 +29,17 @@
     .icon-truck {
         @apply bg-truck bg-contain;
     }
-    .input-simple {
-        @apply w-full text-sm text-center border border-gray-500 p-2 rounded-md;
+    .icon-star {
+        @apply bg-star bg-contain;
+    }
+    .icon-history {
+        @apply bg-history bg-contain;
+    }
+    .icon-external-link {
+        @apply bg-external-link bg-contain;
+    }
+    .icon-question-mark-circle {
+        @apply bg-question-mark-circle bg-contain;
     }
 }
 

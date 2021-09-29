@@ -8,6 +8,10 @@ module.exports = {
                 fingerprint: "url('icons/fingerprint.svg')",
                 columns: "url('icons/columns.svg')",
                 truck: "url('icons/truck.svg')",
+                "question-mark-circle": "url('icons/question-mark-circle.svg')",
+                star: "url('icons/star.svg')",
+                history: "url('icons/history.svg')",
+                "external-link": "url('icons/external-link.svg')",
             },
         },
         boxShadow: {
