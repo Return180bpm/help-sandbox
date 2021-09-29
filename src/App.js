@@ -98,7 +98,7 @@ function App() {
             id="container"
             className="w-6/12 h-full mx-auto p-6 flex flex-col border-2 border-red-500"
         >
-            <header id="bannerAlt" className="flex flex-col gap-2">
+            <header className="flex flex-col gap-2">
                 <h1 className="whitespace-pre-wrap ">Helper {"\n"}Sandbox</h1>
                 <hr className="w-full h-1 bg-black" />
                 <span className="icon-github w-5 h-5"></span>
@@ -110,13 +110,13 @@ function App() {
                     className="w-72 flex flex-col justify-start items-center border-2 border-black shadow-sm rounded-lg overflow-hidden"
                 >
                     <div
-                        id="workbench-header"
+                        id="workbenchHeader"
                         className="w-full flex justify-center bg-pink-600 pt-4 pb-2"
                     >
                         <h4 className="text-white">Workbench</h4>
                     </div>
                     <div
-                        id="workbench-body"
+                        id="workbenchBody"
                         className="w-full flex flex-col gap-8 justify-center p-12"
                     >
                         <input
@@ -128,7 +128,7 @@ function App() {
                             defaultValue=""
                         />
                         <div
-                            id="button-container"
+                            id="buttonContainer"
                             className="w-full flex justify-center gap-4"
                         >
                             {allFeatures.map((feature, index) => (
