@@ -5,7 +5,7 @@ const HelpBox = ({ name, helpDescription, helpURL }) => {
     return (
         <div
             id="helpBox"
-            className="w-96 h-96 flex flex-col justify-self-end self-end  border-2  border-black"
+            className="absolute right-0 bottom-0 w-80 flex flex-col border  border-gray-700"
         >
             <div
                 id="helpTopBar"

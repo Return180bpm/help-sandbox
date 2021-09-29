@@ -104,7 +104,7 @@ function App() {
                 <span className="icon-github w-5 h-5"></span>
             </header>
 
-            <main className="flex-grow flex justify-center items-start pt-12 border-2 border-gray-600">
+            <main className="relative flex-grow flex justify-center items-start pt-12 border-2 border-gray-600">
                 <div
                     id="workbench"
                     className="w-72 flex flex-col justify-start items-center border-2 border-black shadow-sm rounded-lg overflow-hidden"
@@ -155,11 +155,11 @@ function App() {
                     </div>
                 </div>
 
-                {/* <HelpBox
+                <HelpBox
                     name={currentTopicObj.name}
                     helpDescription={currentTopicObj.helpDescription}
                     helpURL={currentTopicObj.helpURL}
-                /> */}
+                />
             </main>
         </div>
     );
