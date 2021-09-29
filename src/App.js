@@ -75,14 +75,14 @@ const aflefle = new Feature(
 const flinkeru = new Feature(
     "Flinkeru",
     addDecoration,
-    "fingerprint",
+    "columns",
     "Stretches the input text.",
     "https://foo.bar"
 );
 const gib = new Feature(
     "Gib",
     addDecoration,
-    "fingerprint",
+    "truck",
     "Donates the input text to an Elder God.",
     "https://foo.bar"
 );

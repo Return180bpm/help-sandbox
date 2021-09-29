@@ -6,6 +6,8 @@ module.exports = {
             backgroundImage: {
                 github: "url('icons/github.svg')",
                 fingerprint: "url('icons/fingerprint.svg')",
+                columns: "url('icons/columns.svg')",
+                truck: "url('icons/truck.svg')",
             },
         },
     },

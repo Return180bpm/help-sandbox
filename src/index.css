@@ -20,6 +20,12 @@
     .icon-fingerprint {
         @apply bg-fingerprint bg-contain;
     }
+    .icon-columns {
+        @apply bg-columns bg-contain;
+    }
+    .icon-truck {
+        @apply bg-truck bg-contain;
+    }
     .input-simple {
         @apply w-full text-sm border border-gray-500 p-2 rounded-sm;
     }
