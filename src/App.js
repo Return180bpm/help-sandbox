@@ -7,6 +7,7 @@ const ControlButton = ({
     onHoverFunction,
     featureName,
     buttonText,
+    iconClassKey,
 }) => {
     const handleOnClick = () => {
         // Get the string that's in the input field
@@ -33,9 +34,9 @@ const ControlButton = ({
             onClick={() => handleOnClick()}
             onMouseEnter={() => onHoverFunction()}
             id={featureName}
-            className="p-4 bg-gray-900 text-white"
+            className={`icon-${iconClassKey} w-8 h-8`}
         >
-            {buttonText}
+            {/* {buttonText} */}
         </button>
     );
 };
@@ -53,11 +54,12 @@ const addDecoration = inputString => {
 // Abstracts features so everything is in one place
 const allFeatures = [];
 class Feature {
-    constructor(name, featureFunction, helpDescription, helpURL) {
+    constructor(name, featureFunction, iconClassKey, helpDescription, helpURL) {
         this.name = name;
         this.featureFunction = featureFunction;
         this.helpDescription = helpDescription;
         this.helpURL = helpURL;
+        this.iconClassKey = iconClassKey;
         allFeatures.push(this);
     }
 }
@@ -66,18 +68,21 @@ class Feature {
 const aflefle = new Feature(
     "Afléflé",
     addDecoration,
+    "fingerprint",
     "Add a decororation to the input text.",
     "https://foo.bar"
 );
 const flinkeru = new Feature(
     "Flinkeru",
     addDecoration,
+    "fingerprint",
     "Stretches the input text.",
     "https://foo.bar"
 );
 const gib = new Feature(
     "Gib",
     addDecoration,
+    "fingerprint",
     "Donates the input text to an Elder God.",
     "https://foo.bar"
 );
@@ -89,43 +94,35 @@ function App() {
     }, [currentTopicObj]);
 
     return (
-        <div className="App w-screen">
-            <div
-                id="container"
-                className="container min-h-screen mx-auto px-6 flex-1"
-            >
+        <div
+            id="container"
+            className="w-6/12 h-full mx-auto p-6 flex flex-col border-2 border-red-500"
+        >
+            <header id="bannerAlt" className="flex flex-col gap-2">
+                <h1 className="whitespace-pre-wrap ">Helper {"\n"}Sandbox</h1>
+                <hr className="w-full h-1 bg-black" />
+                <span className="icon-github w-5 h-5"></span>
+            </header>
+
+            <main className="flex-grow flex justify-center items-start pt-12 border-2 border-gray-600">
                 <div
-                    id="bannerAlt"
-                    className="hidden w-full flex justify-evenly pt-4 pb-1 border-b-8  border-yellow-300"
+                    id="workbench"
+                    className="w-80 flex flex-col justify-start items-center border-2 border-black rounded-t-lg overflow-hidden"
                 >
-                    {/* <p className="text-xl my-8">Confusion -> Clarity</p> */}
-                    <span className="text-3xl">Confusion</span>
-                    <span className="text-3xl">-></span>
-                    <span className="text-3xl">Clarity</span>
-                </div>
-                <div id="banner" className="w-full bg-purple-100 p-8 hidden">
-                    <p className="text-2xl font-bold mb-4">Hey remnote!</p>
-                    <p id="info-text" className="text-base">
-                        I made this to learn Tailwind.
-                    </p>
-                    {/* TODO: insert link to readme */}
-                    <p id="cta" className="text-base">
-                        Read about how it went for me
-                        <a href="github#####.myreadme" className="underline">
-                            {" "}
-                            here
-                        </a>
-                    </p>
-                </div>
-                <main className="w-full min-h-screen  py-8 px-4 flex justify-start items-center border-0 border-black">
                     <div
-                        id="controls"
-                        className="w-96 h-96 p-8 flex flex-col justify-evenly items-baseline border-2 border-black"
+                        id="workbench-header"
+                        className="w-full flex justify-center bg-pink-600 pt-4 pb-2"
+                    >
+                        <h4 className="text-white">Workbench</h4>
+                    </div>
+                    <div
+                        id="workbench-body"
+                        className="flex flex-col gap-8 justify-center p-12"
                     >
                         <input
                             type="text"
                             id="inputField"
-                            className="max-h-12 w-full text-xl border-2 border-grey-500 p-4 pb-0"
+                            className="input-simple"
                             placeholder="input"
                             name="inputField"
                             defaultValue=""
@@ -137,32 +134,33 @@ function App() {
                             {allFeatures.map((feature, index) => (
                                 <ControlButton
                                     onClickFunction={feature.featureFunction}
-                                    featureName={feature.name}
-                                    buttonText={feature.name}
-                                    key={feature.name}
                                     onHoverFunction={() =>
                                         setCurrentTopicObj(feature)
                                     }
+                                    featureName={feature.name}
+                                    buttonText={feature.name}
+                                    key={feature.name}
+                                    iconClassKey={feature.iconClassKey}
                                 />
                             ))}
                         </div>
+                        <input
+                            type="text"
+                            id="outputField"
+                            className="input-simple"
+                            placeholder="output"
+                            name="outputField"
+                            defaultValue=""
+                        />
                     </div>
+                </div>
 
-                    <input
-                        type="text"
-                        id="outputField"
-                        className="max-h-12 w-96 text-2xl border-b-8 border-pink-500 p-4 ob-0"
-                        placeholder="output"
-                        name="outputField"
-                        defaultValue=""
-                    />
-                    <HelpBox
-                        name={currentTopicObj.name}
-                        helpDescription={currentTopicObj.helpDescription}
-                        helpURL={currentTopicObj.helpURL}
-                    />
-                </main>
-            </div>
+                {/* <HelpBox
+                    name={currentTopicObj.name}
+                    helpDescription={currentTopicObj.helpDescription}
+                    helpURL={currentTopicObj.helpURL}
+                /> */}
+            </main>
         </div>
     );
 }
