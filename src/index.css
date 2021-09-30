@@ -14,6 +14,15 @@
 
 @tailwind components;
 @layer components {
+    .title-bar {
+        @apply w-full flex justify-center pt-4 pb-2;
+    }
+    .section-box {
+        @apply w-72 flex flex-col justify-start items-center border-2 border-black  overflow-hidden;
+    }
+    .section-box-body {
+        @apply w-full flex flex-col gap-8 justify-center p-12;
+    }
     .input-simple {
         @apply w-full text-sm text-center border border-gray-500 p-2 rounded-md;
     }

@@ -83,15 +83,15 @@ const gib = new Feature(
     "Gib",
     addDecoration,
     "truck",
-    "Donates the input text to an Elder God.",
+    "Sacrifices your input to an Elder God. The Elder God is randomly chosen. We use DHL for shipping.",
     "https://foo.bar"
 );
 
 function App() {
     const [currentTopicObj, setCurrentTopicObj] = useState({});
-    useEffect(() => {
-        console.log(currentTopicObj);
-    }, [currentTopicObj]);
+    // useEffect(() => {
+    //     console.log(currentTopicObj);
+    // }, [currentTopicObj]);
 
     return (
         <div
@@ -107,18 +107,15 @@ function App() {
             <main className="relative flex-grow flex justify-center items-start pt-12 border-2 border-gray-600">
                 <div
                     id="workbench"
-                    className="w-72 flex flex-col justify-start items-center border-2 border-black shadow-sm rounded-lg overflow-hidden"
+                    className="section-box rounded-lg shadow-sm"
                 >
                     <div
-                        id="workbenchHeader"
-                        className="w-full flex justify-center bg-pink-600 pt-4 pb-2"
+                        id="workbenchTitleBar"
+                        className="title-bar bg-pink-600 text-white"
                     >
-                        <h4 className="text-white">Workbench</h4>
+                        <h4>Workbench</h4>
                     </div>
-                    <div
-                        id="workbenchBody"
-                        className="w-full flex flex-col gap-8 justify-center p-12"
-                    >
+                    <div id="workbenchBody" className="section-box-body">
                         <input
                             type="text"
                             id="inputField"
@@ -157,6 +154,7 @@ function App() {
 
                 <HelpBox
                     name={currentTopicObj.name}
+                    iconClassKey={currentTopicObj.iconClassKey}
                     helpDescription={currentTopicObj.helpDescription}
                     helpURL={currentTopicObj.helpURL}
                 />
