@@ -1,20 +1,29 @@
 import React from "react";
+import { motion } from "framer-motion";
 
-const FloatingHelpButton = () => {
+const FloatingHelpButton = ({ isVisible, onClickFunction }) => {
     return (
-        <img
+        <motion.img
+            animate={{ opacity: 1 }}
             alt="Open the helpbox"
             src="icons/question-mark-circle-noborders.svg"
-            className="w-12 h-12 absolute bottom-8 right-8"
+            onClick={() => {
+                console.log("heyhey");
+                onClickFunction();
+            }}
+            className="z-50 w-12 h-12 absolute bottom-8 right-8 cursor-pointer"
         />
         // <div className="p-3 bg-yellow-200 rounded-full">
         // </div>
     );
 };
 
-const HelpNudgeBox = ({ featureName, iconFileName }) => {
+const HelpNudgeBox = ({ isVisible, featureName, iconFileName }) => {
     return (
-        <div className="min-w-max absolute right-8 bottom-8 section-box flex-nowrap gap-4 p-4 text-center rounded-xl border border-gray-300">
+        <motion.div
+            animate={{ opacity: isVisible ? 1 : 0 }}
+            className="min-w-max absolute right-8 bottom-24 section-box flex-nowrap gap-4 p-4 text-center rounded-xl border border-gray-300"
+        >
             <div className="flex flex-col items-center justify-center gap-2">
                 {featureName && (
                     <div className="inline p-3 bg-yellow-200 rounded-full">
@@ -30,17 +39,31 @@ const HelpNudgeBox = ({ featureName, iconFileName }) => {
             <p className="text-base font-light">
                 Press the [k] key to see how it works.
             </p>
-        </div>
+        </motion.div>
     );
 };
 
 //topicObj = (featureName, featureFunction, helpDescription, helpURL)
-const HelpBox = ({ featureName, iconFileName, helpDescription, helpURL }) => {
+const HelpBox = ({
+    isVisible,
+    featureName,
+    iconFileName,
+    helpDescription,
+    helpURL,
+    closeHelpBox,
+}) => {
     return (
-        <div
+        <motion.div
+            animate={{ opacity: isVisible ? 1 : 0 }}
             id="helpBox"
-            className="absolute right-0 bottom-0 w-80 section-box rounded-tl-2xl border  border-gray-700 bg-white"
+            className="absolute right-0 bottom-24 w-80 section-box rounded-2xl border  border-gray-700 bg-white"
         >
+            <img
+                onClick={() => closeHelpBox()}
+                src="/icons/close-box.svg"
+                alt="Close the Helpbox "
+                className="absolute top-4 right-4 w-6 h-6 cursor-pointer"
+            />
             <div
                 id="helpBoxTitleBar"
                 className="title-bar flex-col justify-end items-center gap-2 px-6 bg-white text-gray-700"
@@ -92,7 +115,7 @@ const HelpBox = ({ featureName, iconFileName, helpDescription, helpURL }) => {
                     ></img>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 
 const ControlButton = ({
     onClickFunction,
-    onHoverFunction,
+    onMouseEnterFunction,
+    onMouseLeaveFunction,
     featureName,
     buttonText,
     iconFileName,
@@ -32,7 +33,8 @@ const ControlButton = ({
     return (
         <button
             onClick={() => handleOnClick()}
-            onMouseEnter={() => onHoverFunction()}
+            onMouseEnter={() => onMouseEnterFunction()}
+            onMouseLeave={() => onMouseLeaveFunction()}
             id={featureName}
             className={`icon-${iconFileName} w-8 h-8`}
         >
@@ -100,15 +102,17 @@ const gib = new Feature(
 );
 
 function App() {
-    const [currentTopicObj, setCurrentTopicObj] = useState({});
+    const [currentTopicObj, setCurrentTopicObj] = useState(null);
+    const [doesWantHelp, setDoesWantHelp] = useState(false);
+    const [isLingering, setIsLingering] = useState(false);
     // useEffect(() => {
-    //     console.log(currentTopicObj);
+    //     console.log(doesWantHelp);
     // }, [currentTopicObj]);
 
     return (
         <div
             id="container"
-            className="w-6/12 h-full mx-auto p-6 flex flex-col border-2 border-red-500"
+            className="w-6/12 h-full mx-auto p-6 flex flex-col "
         >
             <header className="flex flex-col gap-2">
                 <h1 className="whitespace-pre-wrap ">Helper {"\n"}Sandbox</h1>
@@ -120,7 +124,7 @@ function App() {
                 />
             </header>
 
-            <main className="relative flex-grow flex justify-center items-start pt-12 border-2 border-gray-600">
+            <main className="relative flex-grow flex justify-center items-start pt-12 ">
                 <div
                     id="workbench"
                     className="section-box rounded-lg shadow-sm"
@@ -147,9 +151,14 @@ function App() {
                             {allFeatures.map((feature, index) => (
                                 <ControlButton
                                     onClickFunction={feature.featureFunction}
-                                    onHoverFunction={() =>
-                                        setCurrentTopicObj(feature)
-                                    }
+                                    onMouseEnterFunction={() => {
+                                        setCurrentTopicObj(feature);
+                                        setIsLingering(true);
+                                    }}
+                                    onMouseLeaveFunction={() => {
+                                        setCurrentTopicObj(null);
+                                        setIsLingering(false);
+                                    }}
                                     featureName={feature.featureName}
                                     // buttonText={feature.featureName}
                                     key={feature.featureName}
@@ -167,17 +176,23 @@ function App() {
                         />
                     </div>
                 </div>
-                <HelpNudgeBox
-                    featureName={currentTopicObj.featureName}
-                    iconFileName={currentTopicObj.iconFileName}
+                <FloatingHelpButton
+                    onClickFunction={() => setDoesWantHelp(!doesWantHelp)}
+                    isVisible={!doesWantHelp}
                 />
-                {/* <FloatingHelpButton /> */}
-                {/* <HelpBox
-                    featureName={currentTopicObj.featureName}
-                    iconFileName={currentTopicObj.iconFileName}
-                    helpDescription={currentTopicObj.helpDescription}
-                    helpURL={currentTopicObj.helpURL}
-                /> */}
+                <HelpNudgeBox
+                    isVisible={isLingering}
+                    featureName={currentTopicObj?.featureName}
+                    iconFileName={currentTopicObj?.iconFileName}
+                />
+                <HelpBox
+                    isVisible={doesWantHelp}
+                    featureName={currentTopicObj?.featureName}
+                    iconFileName={currentTopicObj?.iconFileName}
+                    helpDescription={currentTopicObj?.helpDescription}
+                    helpURL={currentTopicObj?.helpURL}
+                    closeHelpBox={() => setDoesWantHelp(false)}
+                />
             </main>
         </div>
     );
