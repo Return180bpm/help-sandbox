@@ -7,7 +7,7 @@ const ControlButton = ({
     onHoverFunction,
     featureName,
     buttonText,
-    iconClassKey,
+    iconFileName,
 }) => {
     const handleOnClick = () => {
         // Get the string that's in the input field
@@ -34,13 +34,30 @@ const ControlButton = ({
             onClick={() => handleOnClick()}
             onMouseEnter={() => onHoverFunction()}
             id={featureName}
-            className={`icon-${iconClassKey} w-8 h-8`}
+            className={`icon-${iconFileName} w-8 h-8`}
         >
+            <img
+                src={`icons/${iconFileName}.svg`}
+                alt={`$
+            {featureName}`}
+                className="w-full h-full"
+            />
             {/* {buttonText} */}
         </button>
     );
 };
 
+const FloatingHelpButton = () => {
+    return (
+        <img
+            alt="Open the helpbox"
+            src="icons/question-mark-circle-noborders.svg"
+            className="w-12 h-12 absolute bottom-8 right-8"
+        />
+        // <div className="p-3 bg-yellow-200 rounded-full">
+        // </div>
+    );
+};
 // Define Functions for features
 const addDecoration = inputString => {
     let outputString = "";
@@ -54,12 +71,12 @@ const addDecoration = inputString => {
 // Abstracts features so everything is in one place
 const allFeatures = [];
 class Feature {
-    constructor(name, featureFunction, iconClassKey, helpDescription, helpURL) {
+    constructor(name, featureFunction, iconFileName, helpDescription, helpURL) {
         this.name = name;
         this.featureFunction = featureFunction;
         this.helpDescription = helpDescription;
         this.helpURL = helpURL;
-        this.iconClassKey = iconClassKey;
+        this.iconFileName = iconFileName;
         allFeatures.push(this);
     }
 }
@@ -101,7 +118,11 @@ function App() {
             <header className="flex flex-col gap-2">
                 <h1 className="whitespace-pre-wrap ">Helper {"\n"}Sandbox</h1>
                 <hr className="w-full h-1 bg-black" />
-                <span className="icon-github w-5 h-5"></span>
+                <img
+                    alt="Open this project on github"
+                    src="icons/github.svg"
+                    className="w-5 h-5"
+                />
             </header>
 
             <main className="relative flex-grow flex justify-center items-start pt-12 border-2 border-gray-600">
@@ -137,7 +158,7 @@ function App() {
                                     featureName={feature.name}
                                     buttonText={feature.name}
                                     key={feature.name}
-                                    iconClassKey={feature.iconClassKey}
+                                    iconFileName={feature.iconFileName}
                                 />
                             ))}
                         </div>
@@ -152,9 +173,10 @@ function App() {
                     </div>
                 </div>
 
+                <FloatingHelpButton />
                 <HelpBox
                     name={currentTopicObj.name}
-                    iconClassKey={currentTopicObj.iconClassKey}
+                    iconFileName={currentTopicObj.iconFileName}
                     helpDescription={currentTopicObj.helpDescription}
                     helpURL={currentTopicObj.helpURL}
                 />

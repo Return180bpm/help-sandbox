@@ -1,7 +1,7 @@
 import React from "react";
 
 //topicObj = (name, featureFunction, helpDescription, helpURL)
-const HelpBox = ({ name, iconClassKey, helpDescription, helpURL }) => {
+const HelpBox = ({ name, iconFileName, helpDescription, helpURL }) => {
     return (
         <div
             id="helpBox"
@@ -16,11 +16,17 @@ const HelpBox = ({ name, iconClassKey, helpDescription, helpURL }) => {
             </div>
             <div
                 id="helpBody"
-                className="section-box-body items-center gap-4 pt-2 px-6"
+                className="section-box-body items-center gap-4 pt-2 px-6 pb-4"
             >
                 <div className="flex flex-col items-center justify-center gap-2">
                     <div className="p-3 bg-yellow-200 rounded-full">
-                        <div className={`icon-${iconClassKey} w-8 h-8 `}></div>
+                        {name && (
+                            <img
+                                alt={`${name}`}
+                                src={`/icons/${iconFileName}.svg`}
+                                className={`w-8 h-8`}
+                            ></img>
+                        )}
                     </div>
                     <p className="text-center text-base font-light">
                         {helpDescription}
@@ -28,13 +34,29 @@ const HelpBox = ({ name, iconClassKey, helpDescription, helpURL }) => {
                 </div>
                 <img
                     src="https://media.giphy.com/media/26BoCVdjSJOWT0Fpu/giphy.gif"
-                    alt=""
+                    alt="Real footage of your input being picked up"
                     srcset=""
                 />
-                <button className="max-w-max flex justify-center gap-1 items-center p-2 rounded-lg border border-gray-500">
+                <button className="max-w-max flex justify-center gap-1 items-center p-2 rounded-md border border-gray-500">
                     <span className="text-base font-light">Learn more</span>
-                    <div className="inline-block icon-external-link w-4 h-4"></div>
+                    <img
+                        alt="Opens a help page in a new tab"
+                        src="/icons/external-link.svg"
+                        className="w-4 h-4"
+                    ></img>
                 </button>
+                <div className="w-full flex justify-between">
+                    <img
+                        alt="Star this topic so you can find it easier"
+                        src="/icons/star.svg"
+                        className="w-6 h-6"
+                    ></img>
+                    <img
+                        alt="View your help history"
+                        src="/icons/history.svg"
+                        className="w-6 h-6"
+                    ></img>
+                </div>
             </div>
         </div>
     );
