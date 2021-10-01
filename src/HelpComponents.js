@@ -1,11 +1,45 @@
 import React from "react";
 
-//topicObj = (name, featureFunction, helpDescription, helpURL)
-const HelpBox = ({ name, iconFileName, helpDescription, helpURL }) => {
+const FloatingHelpButton = () => {
+    return (
+        <img
+            alt="Open the helpbox"
+            src="icons/question-mark-circle-noborders.svg"
+            className="w-12 h-12 absolute bottom-8 right-8"
+        />
+        // <div className="p-3 bg-yellow-200 rounded-full">
+        // </div>
+    );
+};
+
+const HelpNudgeBox = ({ featureName, iconFileName }) => {
+    return (
+        <div className="min-w-max absolute right-8 bottom-8 section-box flex-nowrap gap-4 p-4 text-center rounded-xl border border-gray-300">
+            <div className="flex flex-col items-center justify-center gap-2">
+                {featureName && (
+                    <div className="inline p-3 bg-yellow-200 rounded-full">
+                        <img
+                            alt={`${featureName}`}
+                            src={`/icons/${iconFileName}.svg`}
+                            className={`w-8 h-8`}
+                        ></img>
+                    </div>
+                )}
+                <p className="text-sm">Not sure what this does?</p>
+            </div>
+            <p className="text-base font-light">
+                Press the [k] key to see how it works.
+            </p>
+        </div>
+    );
+};
+
+//topicObj = (featureName, featureFunction, helpDescription, helpURL)
+const HelpBox = ({ featureName, iconFileName, helpDescription, helpURL }) => {
     return (
         <div
             id="helpBox"
-            className="absolute right-0 bottom-0 w-80 section-box rounded-tl-2xl border  border-gray-700"
+            className="absolute right-0 bottom-0 w-80 section-box rounded-tl-2xl border  border-gray-700 bg-white"
         >
             <div
                 id="helpBoxTitleBar"
@@ -20,9 +54,9 @@ const HelpBox = ({ name, iconFileName, helpDescription, helpURL }) => {
             >
                 <div className="flex flex-col items-center justify-center gap-2">
                     <div className="p-3 bg-yellow-200 rounded-full">
-                        {name && (
+                        {featureName && (
                             <img
-                                alt={`${name}`}
+                                alt={`${featureName}`}
                                 src={`/icons/${iconFileName}.svg`}
                                 className={`w-8 h-8`}
                             ></img>
@@ -62,4 +96,4 @@ const HelpBox = ({ name, iconFileName, helpDescription, helpURL }) => {
     );
 };
 
-export { HelpBox };
+export { FloatingHelpButton, HelpNudgeBox, HelpBox };

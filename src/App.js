@@ -1,4 +1,4 @@
-import { HelpBox } from "./HelpBox.js";
+import { FloatingHelpButton, HelpNudgeBox, HelpBox } from "./HelpComponents.js";
 import "./App.css";
 import { useState, useEffect } from "react";
 
@@ -47,17 +47,6 @@ const ControlButton = ({
     );
 };
 
-const FloatingHelpButton = () => {
-    return (
-        <img
-            alt="Open the helpbox"
-            src="icons/question-mark-circle-noborders.svg"
-            className="w-12 h-12 absolute bottom-8 right-8"
-        />
-        // <div className="p-3 bg-yellow-200 rounded-full">
-        // </div>
-    );
-};
 // Define Functions for features
 const addDecoration = inputString => {
     let outputString = "";
@@ -71,8 +60,14 @@ const addDecoration = inputString => {
 // Abstracts features so everything is in one place
 const allFeatures = [];
 class Feature {
-    constructor(name, featureFunction, iconFileName, helpDescription, helpURL) {
-        this.name = name;
+    constructor(
+        featureName,
+        featureFunction,
+        iconFileName,
+        helpDescription,
+        helpURL
+    ) {
+        this.featureName = featureName;
         this.featureFunction = featureFunction;
         this.helpDescription = helpDescription;
         this.helpURL = helpURL;
@@ -155,9 +150,9 @@ function App() {
                                     onHoverFunction={() =>
                                         setCurrentTopicObj(feature)
                                     }
-                                    featureName={feature.name}
-                                    buttonText={feature.name}
-                                    key={feature.name}
+                                    featureName={feature.featureName}
+                                    // buttonText={feature.featureName}
+                                    key={feature.featureName}
                                     iconFileName={feature.iconFileName}
                                 />
                             ))}
@@ -172,14 +167,17 @@ function App() {
                         />
                     </div>
                 </div>
-
-                <FloatingHelpButton />
-                <HelpBox
-                    name={currentTopicObj.name}
+                <HelpNudgeBox
+                    featureName={currentTopicObj.featureName}
+                    iconFileName={currentTopicObj.iconFileName}
+                />
+                {/* <FloatingHelpButton /> */}
+                {/* <HelpBox
+                    featureName={currentTopicObj.featureName}
                     iconFileName={currentTopicObj.iconFileName}
                     helpDescription={currentTopicObj.helpDescription}
                     helpURL={currentTopicObj.helpURL}
-                />
+                /> */}
             </main>
         </div>
     );

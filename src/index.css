@@ -3,7 +3,6 @@
     div {
         @apply box-border;
     }
-
     h1 {
         @apply text-2xl font-semibold leading-tight;
     }
