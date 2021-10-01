@@ -52,11 +52,22 @@ const HelpBox = ({
     helpURL,
     closeHelpBox,
 }) => {
+    const variants = {
+        open: { opacity: 1, x: 0 },
+        closed: { opacity: 0, x: "100%" },
+    };
+    const spring = {
+        type: "spring",
+        damping: 20,
+        stiffness: 100,
+    };
     return (
         <motion.div
-            animate={{ opacity: isVisible ? 1 : 0 }}
+            animate={isVisible ? "open" : "closed"}
+            variants={variants}
+            transition={spring}
             id="helpBox"
-            className="absolute right-0 bottom-24 w-80 section-box rounded-2xl border  border-gray-700 bg-white"
+            className="absolute right-8 bottom-24 w-80 section-box rounded-2xl border  border-gray-700 bg-white"
         >
             <img
                 onClick={() => closeHelpBox()}

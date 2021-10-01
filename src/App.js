@@ -1,6 +1,6 @@
 import { FloatingHelpButton, HelpNudgeBox, HelpBox } from "./HelpComponents.js";
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 const ControlButton = ({
     onClickFunction,
@@ -105,14 +105,15 @@ function App() {
     const [currentTopicObj, setCurrentTopicObj] = useState(null);
     const [doesWantHelp, setDoesWantHelp] = useState(false);
     const [isLingering, setIsLingering] = useState(false);
+    const currentTopicObjRef = useRef(null);
     // useEffect(() => {
-    //     console.log(doesWantHelp);
+    //     currentTopicObjRef.current = currentTopicObj;
     // }, [currentTopicObj]);
 
     return (
         <div
             id="container"
-            className="w-6/12 h-full mx-auto p-6 flex flex-col "
+            className="overflow-hidden w-6/12 h-full mx-auto p-6 flex flex-col "
         >
             <header className="flex flex-col gap-2">
                 <h1 className="whitespace-pre-wrap ">Helper {"\n"}Sandbox</h1>
@@ -156,7 +157,7 @@ function App() {
                                         setIsLingering(true);
                                     }}
                                     onMouseLeaveFunction={() => {
-                                        setCurrentTopicObj(null);
+                                        // setCurrentTopicObj(null);
                                         setIsLingering(false);
                                     }}
                                     featureName={feature.featureName}
