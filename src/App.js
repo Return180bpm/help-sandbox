@@ -1,4 +1,9 @@
-import { FloatingHelpButton, HelpNudgeBox, HelpBox } from "./HelpComponents.js";
+import {
+    IntroBox,
+    FloatingHelpButton,
+    HelpNudgeBox,
+    HelpBox,
+} from "./HelpComponents.js";
 import "./App.css";
 import { useState, useEffect, useRef } from "react";
 
@@ -105,6 +110,7 @@ function App() {
     const [currentTopicObj, setCurrentTopicObj] = useState(null);
     const [doesWantHelp, setDoesWantHelp] = useState(false);
     const [isLingering, setIsLingering] = useState(false);
+    const [isIntroBoxVisible, setIsIntroBoxVisible] = useState(true);
     const currentTopicObjRef = useRef(null);
     // useEffect(() => {
     //     currentTopicObjRef.current = currentTopicObj;
@@ -153,6 +159,7 @@ function App() {
                                 <ControlButton
                                     onClickFunction={feature.featureFunction}
                                     onMouseEnterFunction={() => {
+                                        setIsIntroBoxVisible(false);
                                         setCurrentTopicObj(feature);
                                         setIsLingering(true);
                                     }}
@@ -177,9 +184,18 @@ function App() {
                         />
                     </div>
                 </div>
+                <IntroBox
+                    isVisible={isIntroBoxVisible}
+                    featureIconFileNameArray={allFeatures.map(
+                        feature => feature.iconFileName
+                    )}
+                    closeIntroBox={() => setIsIntroBoxVisible(false)}
+                />
                 <FloatingHelpButton
-                    onClickFunction={() => setDoesWantHelp(!doesWantHelp)}
-                    isVisible={!doesWantHelp}
+                    onClickFunction={() => {
+                        setDoesWantHelp(!doesWantHelp);
+                        setIsIntroBoxVisible(!isIntroBoxVisible);
+                    }}
                 />
                 <HelpNudgeBox
                     isVisible={isLingering}
