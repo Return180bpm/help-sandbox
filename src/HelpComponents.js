@@ -58,6 +58,7 @@ const IntroBox = ({ isVisible, closeIntroBox, featureIconFileNameArray }) => {
                                 alt="Hover over the button in the Workbench area"
                                 src={`/icons/${iconFileName}.svg`}
                                 className="w-8 h-8"
+                                key={iconFileName}
                             ></img>
                         ))}
                     </div>

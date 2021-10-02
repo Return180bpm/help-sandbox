@@ -5,7 +5,7 @@ import {
     HelpBox,
 } from "./HelpComponents.js";
 import "./App.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 const ControlButton = ({
     onClickFunction,
@@ -116,6 +116,38 @@ function App() {
     //     currentTopicObjRef.current = currentTopicObj;
     // }, [currentTopicObj]);
 
+    // Add hotkey funktionality
+    // This makes the helpbox appear with the element that is being currently hovered over, or was last hovered over
+    const handleKeyDownCallback = useCallback(
+        e => {
+            if (e.keyCode === 72) {
+                if (currentTopicObj) {
+                    setDoesWantHelp(!doesWantHelp);
+                }
+            }
+        },
+        [setDoesWantHelp, doesWantHelp, currentTopicObj]
+    );
+    useEffect(() => {
+        window.addEventListener("keydown", handleKeyDownCallback);
+        return () => {
+            window.removeEventListener("keydown", handleKeyDownCallback);
+        };
+    }, [handleKeyDownCallback]);
+
+    // Hotkey only works while hovering over symbol
+    // useEffect(() => {
+    //     if (isLingering) {
+    //         window.addEventListener("keydown", handleKeyDownCallback);
+    //     } else {
+    //         window.removeEventListener("keydown", handleKeyDownCallback);
+    //     }
+
+    //     return () => {
+    //         window.removeEventListener("keydown", handleKeyDownCallback);
+    //     };
+    // }, [isLingering, handleKeyDownCallback]);
+
     return (
         <div
             id="container"
@@ -198,7 +230,7 @@ function App() {
                     }}
                 />
                 <HelpNudgeBox
-                    isVisible={isLingering}
+                    isVisible={isLingering && !doesWantHelp}
                     featureName={currentTopicObj?.featureName}
                     iconFileName={currentTopicObj?.iconFileName}
                 />
