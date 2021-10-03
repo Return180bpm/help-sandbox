@@ -4,6 +4,7 @@ import {
     HelpNudgeBox,
     HelpBox,
 } from "./HelpComponents.js";
+import { Workbench } from "./Workbench";
 import "./App.css";
 import { useState, useEffect, useRef, useCallback } from "react";
 
@@ -87,12 +88,14 @@ class Feature {
         featureFunction,
         iconFileName,
         helpDescription,
+        helpDemoWebmFilename,
         helpURL
     ) {
         this.featureName = featureName;
         this.featureFunction = featureFunction;
         this.iconFileName = iconFileName;
         this.helpDescription = helpDescription;
+        this.helpDemoWebmFilename = helpDemoWebmFilename;
         this.helpURL = helpURL;
         allFeatures.push(this);
     }
@@ -104,6 +107,7 @@ const AddDecoration = new Feature(
     _addDecoration,
     "fingerprint",
     "Add a decororation to the input text.",
+    "helpAddDecoration.webm",
     "https://foo.bar"
 );
 const MakeAesthetic = new Feature(
@@ -111,6 +115,7 @@ const MakeAesthetic = new Feature(
     _makeAesthetic,
     "columns",
     "Make the input text aesthetic.",
+    "helpMakeAesthetic.webm",
     "https://foo.bar"
 );
 const Sacrifice = new Feature(
@@ -118,6 +123,7 @@ const Sacrifice = new Feature(
     _sacrifice,
     "truck",
     "Sacrifice your input to an Elder God. The Elder God is randomly chosen. We use DHL for shipping.",
+    "https://i.giphy.com/media/26BoCVdjSJOWT0Fpu/giphy.mp4",
     "https://foo.bar"
 );
 
@@ -255,6 +261,7 @@ function App() {
                     featureName={currentTopicObj?.featureName}
                     iconFileName={currentTopicObj?.iconFileName}
                     helpDescription={currentTopicObj?.helpDescription}
+                    helpDemoWebmFilename={currentTopicObj?.helpDemoWebmFilename}
                     helpURL={currentTopicObj?.helpURL}
                     closeHelpBox={() => setDoesWantHelp(false)}
                 />

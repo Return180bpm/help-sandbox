@@ -123,6 +123,7 @@ const HelpBox = ({
     iconFileName,
     helpDescription,
     helpURL,
+    helpDemoWebmFilename,
     closeHelpBox,
 }) => {
     const variants = {
@@ -173,11 +174,7 @@ const HelpBox = ({
                         {helpDescription}
                     </p>
                 </div>
-                <img
-                    src="https://media.giphy.com/media/26BoCVdjSJOWT0Fpu/giphy.gif"
-                    alt="Real footage of your input being picked up"
-                    srcset=""
-                />
+                <video controls autoPlay src={helpDemoWebmFilename} />
                 <button className="max-w-max flex justify-center gap-1 items-center p-2 rounded-md border border-gray-500">
                     <span className="text-base font-light">Learn more</span>
                     <img
