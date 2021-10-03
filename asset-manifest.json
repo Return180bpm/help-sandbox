@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/Return180bpm/helper-sandbox/static/css/main.6231256f.chunk.css",
+    "main.js": "/Return180bpm/helper-sandbox/static/js/main.18ac8e47.chunk.js",
+    "main.js.map": "/Return180bpm/helper-sandbox/static/js/main.18ac8e47.chunk.js.map",
+    "runtime-main.js": "/Return180bpm/helper-sandbox/static/js/runtime-main.3dfb091c.js",
+    "runtime-main.js.map": "/Return180bpm/helper-sandbox/static/js/runtime-main.3dfb091c.js.map",
+    "static/js/2.ab52175e.chunk.js": "/Return180bpm/helper-sandbox/static/js/2.ab52175e.chunk.js",
+    "static/js/2.ab52175e.chunk.js.map": "/Return180bpm/helper-sandbox/static/js/2.ab52175e.chunk.js.map",
+    "static/js/3.6c05ac43.chunk.js": "/Return180bpm/helper-sandbox/static/js/3.6c05ac43.chunk.js",
+    "static/js/3.6c05ac43.chunk.js.map": "/Return180bpm/helper-sandbox/static/js/3.6c05ac43.chunk.js.map",
+    "index.html": "/Return180bpm/helper-sandbox/index.html",
+    "static/css/main.6231256f.chunk.css.map": "/Return180bpm/helper-sandbox/static/css/main.6231256f.chunk.css.map",
+    "static/js/2.ab52175e.chunk.js.LICENSE.txt": "/Return180bpm/helper-sandbox/static/js/2.ab52175e.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3dfb091c.js",
+    "static/js/2.ab52175e.chunk.js",
+    "static/css/main.6231256f.chunk.css",
+    "static/js/main.18ac8e47.chunk.js"
+  ]
+}
