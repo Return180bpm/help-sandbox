@@ -4,7 +4,6 @@ import {
     HelpNudgeBox,
     HelpBox,
 } from "./HelpComponents.js";
-import { Workbench } from "./Workbench";
 import "./App.css";
 import { useState, useEffect, useRef, useCallback } from "react";
 
@@ -247,7 +246,8 @@ function App() {
                 />
                 <FloatingHelpButton
                     onClickFunction={() => {
-                        setDoesWantHelp(!doesWantHelp);
+                        // This hides the HelpBox and exposes the logical conondrum I have got myself into
+                        setDoesWantHelp(false);
                         setIsIntroBoxVisible(!isIntroBoxVisible);
                     }}
                 />
@@ -257,7 +257,7 @@ function App() {
                     iconFileName={currentTopicObj?.iconFileName}
                 />
                 <HelpBox
-                    isVisible={doesWantHelp}
+                    isVisible={currentTopicObj && doesWantHelp}
                     featureName={currentTopicObj?.featureName}
                     iconFileName={currentTopicObj?.iconFileName}
                     helpDescription={currentTopicObj?.helpDescription}
