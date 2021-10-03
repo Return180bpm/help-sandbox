@@ -177,11 +177,17 @@ function App() {
             <header className="flex flex-col gap-2">
                 <h1 className="whitespace-pre-wrap ">Helper {"\n"}Sandbox</h1>
                 <hr className="w-full h-1 bg-black" />
-                <img
-                    alt="Open this project on github"
-                    src="icons/github.svg"
-                    className="w-5 h-5"
-                />
+                <a
+                    href="https://github.com/Return180bpm/helper-sandbox"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <img
+                        alt="Open this project on github"
+                        src="icons/github.svg"
+                        className="w-5 h-5"
+                    />
+                </a>
             </header>
 
             <main className="relative flex-grow flex justify-center items-start pt-12 ">
@@ -217,7 +223,7 @@ function App() {
                                         setIsLingering(true);
                                     }}
                                     onMouseLeaveFunction={() => {
-                                        setDoesWantHelp(false);
+                                        // setDoesWantHelp(false);
                                         setIsLingering(false);
                                     }}
                                     featureName={feature.featureName}
@@ -246,7 +252,7 @@ function App() {
                 />
                 <FloatingHelpButton
                     onClickFunction={() => {
-                        // This hides the HelpBox and exposes the logical conondrum I have got myself into
+                        // This hides the HelpBox and exposes the absurd logical conondrum I have got myself into
                         setDoesWantHelp(false);
                         setIsIntroBoxVisible(!isIntroBoxVisible);
                     }}

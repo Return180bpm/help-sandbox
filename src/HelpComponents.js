@@ -63,14 +63,19 @@ const IntroBox = ({ isVisible, closeIntroBox, featureIconFileNameArray }) => {
                         ))}
                     </div>
                 </div>
-                <button className="max-w-max flex justify-center gap-1 items-center p-2 rounded-md border border-gray-500">
+                <a
+                    href="https://github.com/Return180bpm/helper-sandbox"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="max-w-max flex justify-center gap-1 items-center p-2 rounded-md border border-gray-500"
+                >
                     <span className="text-sm font-light">Learn more</span>
                     <img
                         alt="Opens a help page in a new tab"
                         src="/icons/external-link.svg"
                         className="w-4 h-4"
                     ></img>
-                </button>
+                </a>
             </div>
         </motion.div>
     );
@@ -170,7 +175,7 @@ const HelpBox = ({
                 display: "none",
             },
         },
-        // changed: { opacity: ["0%", "50%"] },
+        changed: { opacity: 0.2 },
         hidden: { opacity: 0, x: "100%", display: "none" },
     };
     const spring = {
@@ -218,16 +223,16 @@ const HelpBox = ({
                         {helpDescription}
                     </p>
                 </div>
-                <video controls autoPlay src={helpDemoWebmFilename} />
-                <button className="max-w-max flex justify-center gap-1 items-center p-2 rounded-md border border-gray-500">
+                <video controls autoPlay loop src={helpDemoWebmFilename} />
+                {/* <button id="linkToHelpSection" className="max-w-max flex justify-center gap-1 items-center p-2 rounded-md border border-gray-500">
                     <span className="text-base font-light">Learn more</span>
                     <img
                         alt="Opens a help page in a new tab"
                         src="/icons/external-link.svg"
                         className="w-4 h-4"
                     ></img>
-                </button>
-                <div className="w-full flex justify-between">
+                </button> */}
+                {/* <div id="bottomToolbar" className="w-full flex justify-between">
                     <img
                         alt="Star this topic so you can find it easier"
                         src="/icons/star.svg"
@@ -238,7 +243,7 @@ const HelpBox = ({
                         src="/icons/history.svg"
                         className="w-6 h-6"
                     ></img>
-                </div>
+                </div> */}
             </div>
         </motion.div>
     );
