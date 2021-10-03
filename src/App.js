@@ -132,9 +132,9 @@ function App() {
     const [isLingering, setIsLingering] = useState(false);
     const [isIntroBoxVisible, setIsIntroBoxVisible] = useState(true);
     const currentTopicObjRef = useRef(null);
-    // useEffect(() => {
-    //     currentTopicObjRef.current = currentTopicObj;
-    // }, [currentTopicObj]);
+    useEffect(() => {
+        currentTopicObjRef.current = currentTopicObj;
+    }, [currentTopicObj]);
 
     // Add hotkey funktionality
     // This makes the helpbox appear with the element that is being currently hovered over, or was last hovered over
@@ -217,7 +217,7 @@ function App() {
                                         setIsLingering(true);
                                     }}
                                     onMouseLeaveFunction={() => {
-                                        // setCurrentTopicObj(null);
+                                        setDoesWantHelp(false);
                                         setIsLingering(false);
                                     }}
                                     featureName={feature.featureName}

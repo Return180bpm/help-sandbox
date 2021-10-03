@@ -92,9 +92,40 @@ const FloatingHelpButton = ({ onClickFunction }) => {
 };
 
 const HelpNudgeBox = ({ isVisible, featureName, iconFileName }) => {
+    const variants = {
+        open: {
+            opacity: 1,
+            x: 0,
+            display: "block",
+            transition: {
+                delay: 0.7,
+                type: "spring",
+                damping: 12,
+                stiffness: 120,
+            },
+        },
+        closed: {
+            opacity: 0,
+            x: "100%",
+            transition: {
+                duration: 0.3,
+                type: "spring",
+                damping: 50,
+                stiffness: 120,
+            },
+            transitionEnd: {
+                display: "none",
+            },
+        },
+        // changed: { opacity: ["0%", "50%"] },
+        hidden: { opacity: 0, x: "100%", display: "none" },
+    };
+
     return (
         <motion.div
-            animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : "100%" }}
+            variants={variants}
+            initial="hidden"
+            animate={isVisible ? "open" : "closed"}
             className="min-w-max absolute right-8 bottom-24 section-box flex-nowrap gap-4 p-4 text-center rounded-xl border border-gray-300"
         >
             <div className="flex flex-col items-center justify-center gap-2">
@@ -127,8 +158,20 @@ const HelpBox = ({
     closeHelpBox,
 }) => {
     const variants = {
-        open: { opacity: 1, x: 0 },
-        closed: { opacity: 0, x: "100%" },
+        open: {
+            opacity: 1,
+            x: 0,
+            display: "block",
+        },
+        closed: {
+            opacity: 0,
+            x: "100%",
+            transitionEnd: {
+                display: "none",
+            },
+        },
+        // changed: { opacity: ["0%", "50%"] },
+        hidden: { opacity: 0, x: "100%", display: "none" },
     };
     const spring = {
         type: "spring",
@@ -137,8 +180,9 @@ const HelpBox = ({
     };
     return (
         <motion.div
-            animate={isVisible ? "open" : "closed"}
             variants={variants}
+            initial="hidden"
+            animate={isVisible ? "open" : "closed"}
             transition={spring}
             id="helpBox"
             className="absolute right-8 bottom-24 w-80 section-box rounded-2xl border border-gray-700 bg-white"
