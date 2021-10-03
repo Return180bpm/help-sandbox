@@ -12,24 +12,15 @@ const ControlButton = ({
     onMouseEnterFunction,
     onMouseLeaveFunction,
     featureName,
-    buttonText,
     iconFileName,
 }) => {
     const handleOnClick = () => {
         // Get the string that's in the input field
-
-        const inputString =
-            document.getElementById("inputField").value ||
-            "I'm all out of strings";
+        const inputString = document.getElementById("inputField").value;
         let outputString = "";
 
         // Apply the transformotion to the input
         outputString = onClickFunction(inputString);
-
-        inputString === "xXx" &&
-            document
-                .querySelector("main")
-                .append("Winner winner chicken dinner");
 
         // Put the outputString where it belongs
         document.getElementById("outputField").value = outputString;
@@ -54,12 +45,36 @@ const ControlButton = ({
     );
 };
 
-// Define Functions for features
-const addDecoration = inputString => {
+// Define Functions for demo features
+const DEFAULT_STRING = "I'm all out of strings";
+const _addDecoration = inputString => {
     let outputString = "";
-    let decoString = "xXx";
+    const decoString = "╰(▔∀▔)╯";
 
-    outputString = `${decoString} ${inputString} ${decoString}`;
+    outputString = `${decoString}${inputString || DEFAULT_STRING}${decoString}`;
+
+    return outputString;
+};
+
+const _makeAesthetic = inputString => {
+    let outputString = "";
+    const aesthetic = " ";
+    const inputString_ = inputString || DEFAULT_STRING;
+
+    outputString = inputString_.toUpperCase().split("").join(aesthetic);
+
+    return outputString;
+};
+
+const _sacrifice = inputString => {
+    let outputString = "";
+
+    const answer = inputString
+        ? `Your ${inputString.length} characters have been sacrificed. Thank You for your contribution`
+        : "Please fill in the input box above";
+
+    outputString = answer;
+    document.getElementById("inputField").value = "";
 
     return outputString;
 };
@@ -76,33 +91,33 @@ class Feature {
     ) {
         this.featureName = featureName;
         this.featureFunction = featureFunction;
+        this.iconFileName = iconFileName;
         this.helpDescription = helpDescription;
         this.helpURL = helpURL;
-        this.iconFileName = iconFileName;
         allFeatures.push(this);
     }
 }
 
 // Each object represents a feature
-const aflefle = new Feature(
-    "Afléflé",
-    addDecoration,
+const AddDecoration = new Feature(
+    "AddDecoration",
+    _addDecoration,
     "fingerprint",
     "Add a decororation to the input text.",
     "https://foo.bar"
 );
-const flinkeru = new Feature(
-    "Flinkeru",
-    addDecoration,
+const MakeAesthetic = new Feature(
+    "MakeAesthetic",
+    _makeAesthetic,
     "columns",
-    "Stretches the input text.",
+    "Make the input text aesthetic.",
     "https://foo.bar"
 );
-const gib = new Feature(
-    "Gib",
-    addDecoration,
+const Sacrifice = new Feature(
+    "Sacrifice",
+    _sacrifice,
     "truck",
-    "Sacrifices your input to an Elder God. The Elder God is randomly chosen. We use DHL for shipping.",
+    "Sacrifice your input to an Elder God. The Elder God is randomly chosen. We use DHL for shipping.",
     "https://foo.bar"
 );
 
@@ -135,7 +150,8 @@ function App() {
         };
     }, [handleKeyDownCallback]);
 
-    // Hotkey only works while hovering over symbol
+    // In this alternative version, the hotkeys only work while hovering over a symbol
+    //
     // useEffect(() => {
     //     if (isLingering) {
     //         window.addEventListener("keydown", handleKeyDownCallback);
@@ -166,7 +182,7 @@ function App() {
             <main className="relative flex-grow flex justify-center items-start pt-12 ">
                 <div
                     id="workbench"
-                    className="section-box rounded-lg shadow-sm"
+                    className="section-box w-96 rounded-lg shadow-sm"
                 >
                     <div
                         id="workbenchTitleBar"
@@ -174,7 +190,7 @@ function App() {
                     >
                         <h4>Workbench</h4>
                     </div>
-                    <div id="workbenchBody" className="section-box-body">
+                    <div id="workbenchBody" className="section-box-body py-8">
                         <input
                             type="text"
                             id="inputField"

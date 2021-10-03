@@ -110,7 +110,7 @@ const HelpNudgeBox = ({ isVisible, featureName, iconFileName }) => {
                 <p className="text-sm">Not sure what this does?</p>
             </div>
             <p className="text-base font-light">
-                Press the [k] key to see how it works.
+                Press the [h] key to see how it works.
             </p>
         </motion.div>
     );
