@@ -21,7 +21,7 @@ const IntroBox = ({ isVisible, closeIntroBox, featureIconFileNameArray }) => {
         >
             <img
                 onClick={() => closeIntroBox()}
-                src="/icons/close-box.svg"
+                src="icons/close-box.svg"
                 alt="Close the Helpbox "
                 className="absolute top-4 right-4 w-6 h-6 cursor-pointer"
             />
@@ -56,7 +56,7 @@ const IntroBox = ({ isVisible, closeIntroBox, featureIconFileNameArray }) => {
                         {featureIconFileNameArray.map(iconFileName => (
                             <img
                                 alt="Hover over the button in the Workbench area"
-                                src={`/icons/${iconFileName}.svg`}
+                                src={`icons/${iconFileName}.svg`}
                                 className="w-8 h-8"
                                 key={iconFileName}
                             ></img>
@@ -72,7 +72,7 @@ const IntroBox = ({ isVisible, closeIntroBox, featureIconFileNameArray }) => {
                     <span className="text-sm font-light">Learn more</span>
                     <img
                         alt="Opens a help page in a new tab"
-                        src="/icons/external-link.svg"
+                        src="icons/external-link.svg"
                         className="w-4 h-4"
                     ></img>
                 </a>
@@ -138,7 +138,7 @@ const HelpNudgeBox = ({ isVisible, featureName, iconFileName }) => {
                     <div className="inline p-3 bg-yellow-200 rounded-full">
                         <img
                             alt={`${featureName}`}
-                            src={`/icons/${iconFileName}.svg`}
+                            src={`icons/${iconFileName}.svg`}
                             className={`w-8 h-8`}
                         ></img>
                     </div>
@@ -194,7 +194,7 @@ const HelpBox = ({
         >
             <img
                 onClick={() => closeHelpBox()}
-                src="/icons/close-box.svg"
+                src="icons/close-box.svg"
                 alt="Close the Helpbox "
                 className="absolute top-4 right-4 w-6 h-6 cursor-pointer"
             />
@@ -214,7 +214,7 @@ const HelpBox = ({
                         {featureName && (
                             <img
                                 alt={`${featureName}`}
-                                src={`/icons/${iconFileName}.svg`}
+                                src={`icons/${iconFileName}.svg`}
                                 className={`w-8 h-8`}
                             ></img>
                         )}
@@ -228,19 +228,19 @@ const HelpBox = ({
                     <span className="text-base font-light">Learn more</span>
                     <img
                         alt="Opens a help page in a new tab"
-                        src="/icons/external-link.svg"
+                        src="icons/external-link.svg"
                         className="w-4 h-4"
                     ></img>
                 </button> */}
                 {/* <div id="bottomToolbar" className="w-full flex justify-between">
                     <img
                         alt="Star this topic so you can find it easier"
-                        src="/icons/star.svg"
+                        src="icons/star.svg"
                         className="w-6 h-6"
                     ></img>
                     <img
                         alt="View your help history"
-                        src="/icons/history.svg"
+                        src="icons/history.svg"
                         className="w-6 h-6"
                     ></img>
                 </div> */}
