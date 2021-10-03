@@ -131,7 +131,7 @@ const HelpNudgeBox = ({ isVisible, featureName, iconFileName }) => {
             variants={variants}
             initial="hidden"
             animate={isVisible ? "open" : "closed"}
-            className="min-w-max absolute right-8 bottom-24 section-box flex-nowrap gap-4 p-4 text-center rounded-xl border border-gray-300"
+            className="min-w-max absolute right-8 bottom-24 section-box flex-nowrap p-8 pt-4 text-center rounded-xl border border-gray-300"
         >
             <div className="flex flex-col items-center justify-center gap-2">
                 {featureName && (
@@ -145,9 +145,11 @@ const HelpNudgeBox = ({ isVisible, featureName, iconFileName }) => {
                 )}
                 <p className="text-sm">Not sure what this does?</p>
             </div>
-            <p className="text-base font-light">
-                Press the [h] key to see how it works.
-            </p>
+            <div className="foo">
+                <p className="mt-4 text-base font-light">
+                    Press the [h] key to see how it works.
+                </p>
+            </div>
         </motion.div>
     );
 };

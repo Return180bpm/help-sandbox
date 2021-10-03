@@ -1,6 +1,6 @@
 {
     "name": "helper-sandbox",
-    "homepage": "https://return180bpm.github.io/helper-sandbox/",
+    "homepage": ".",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
