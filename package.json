@@ -1,5 +1,6 @@
 {
-    "name": "self-explaining",
+    "name": "helper-sandbox",
+    "homepage": "https://return180bpm.github.io/helper-sandbox/",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -15,6 +16,8 @@
     },
     "scripts": {
         "start": "craco start",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build",
         "build": "craco build",
         "test": "craco test",
         "eject": "react-scripts eject"
@@ -39,6 +42,7 @@
     },
     "devDependencies": {
         "autoprefixer": "^9.8.7",
+        "gh-pages": "^3.2.3",
         "postcss": "^7.0.38",
         "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.16"
     }
