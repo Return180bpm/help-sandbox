@@ -1,7 +1,31 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-const IntroBox = ({ isVisible, closeIntroBox, featureIconFileNameArray }) => {
+/////////////////////////////////////////////////////////////////////////////////////////////
+////            All Components that have to do with helping the user.               /////////
+//// Currently: <FloatingHelpButton>, <HelpIntroBox>, <HelpNudgeBox>, <HelpMainBox> /////////
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+// A help button that is always visible in the lower right corner.
+export const FloatingHelpButton = ({ handleOnClick }) => {
+    return (
+        <img
+            alt="Open the Introbox"
+            src="icons/question-mark-circle-noborders.svg"
+            onClick={() => {
+                handleOnClick();
+            }}
+            className="z-50 w-12 h-12 absolute bottom-8 right-8 cursor-pointer"
+        />
+    );
+};
+
+// A box that explains the basic idea of this app and gives a CTA. Opens when page first loads.
+export const HelpIntroBox = ({
+    isVisible,
+    closeIntroBox,
+    featureIconFileNameArray,
+}) => {
     const variants = {
         open: { opacity: 1, x: 0 },
         closed: { opacity: 0, x: "100%" },
@@ -81,22 +105,8 @@ const IntroBox = ({ isVisible, closeIntroBox, featureIconFileNameArray }) => {
     );
 };
 
-const FloatingHelpButton = ({ onClickFunction }) => {
-    return (
-        <img
-            alt="Open the Introbox"
-            src="icons/question-mark-circle-noborders.svg"
-            onClick={() => {
-                onClickFunction();
-            }}
-            className="z-50 w-12 h-12 absolute bottom-8 right-8 cursor-pointer"
-        />
-        // <div className="p-3 bg-yellow-200 rounded-full">
-        // </div>
-    );
-};
-
-const HelpNudgeBox = ({ isVisible, featureName, iconFileName }) => {
+// A box that appears after hovering over a feature in the <Workbench>. Asks if user wants help and shows hotkey to open <Helpbox>
+export const HelpNudgeBox = ({ isVisible, featureName, iconFileName }) => {
     const variants = {
         open: {
             opacity: 1,
@@ -154,15 +164,14 @@ const HelpNudgeBox = ({ isVisible, featureName, iconFileName }) => {
     );
 };
 
-//topicObj = (featureName, featureFunction, helpDescription, helpURL)
-const HelpBox = ({
+// A box that explains and demonstrates how to use the feature that is, or was last, being hovered over.
+export const HelpMainBox = ({
     isVisible,
+    close,
     featureName,
     iconFileName,
     helpDescription,
-    helpURL,
     helpDemoWebmFilename,
-    closeHelpBox,
 }) => {
     const variants = {
         open: {
@@ -195,7 +204,7 @@ const HelpBox = ({
             className="absolute right-8 bottom-24 w-80 section-box rounded-2xl border border-gray-700 bg-white"
         >
             <img
-                onClick={() => closeHelpBox()}
+                onClick={() => close()}
                 src="icons/close-box.svg"
                 alt="Close the Helpbox "
                 className="absolute top-4 right-4 w-6 h-6 cursor-pointer"
@@ -226,6 +235,8 @@ const HelpBox = ({
                     </p>
                 </div>
                 <video controls autoPlay loop src={helpDemoWebmFilename} />
+
+                {/* Feature ideas for the future */}
                 {/* <button id="linkToHelpSection" className="max-w-max flex justify-center gap-1 items-center p-2 rounded-md border border-gray-500">
                     <span className="text-base font-light">Learn more</span>
                     <img
@@ -250,5 +261,3 @@ const HelpBox = ({
         </motion.div>
     );
 };
-
-export { IntroBox, FloatingHelpButton, HelpNudgeBox, HelpBox };
