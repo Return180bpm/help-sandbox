@@ -69,8 +69,7 @@ I remember feeling sort of confused when it was time to end the work day and go 
 This software would have to fulfill 2 criteria:
 
     1. Be good at recognizing when the user needs help.
-
-2. Give the user help that is useful for her current predicament.
+    2. Give the user help that is useful for her current predicament.
 
 Out of these constraints, the idea for a prototype. The app would consist of a rudimentary workbench - a stand-in for an app's main working area - and a help box - showing contextual help whenever it was needed. How does it know when it's needed? Well, whenever a user would hover their mouse cursor over an element for some time a smaller "nudge box" would appear, asking if help was desired. In effect, I wanted a better version of Microsoft's Clippy.
 
