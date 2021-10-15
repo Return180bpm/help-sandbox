@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import initFeatures from "./features";
+import { Feature, initFeatures } from "./features";
 import Workbench from "./Workbench";
 import {
     HelpIntroBox,
@@ -24,7 +24,9 @@ function App() {
     // This state holds the feature that the user is currently hovering over (or was just hovering over).
     // This is used to give contextual help.
     // Gets passed to <HelpNudgeBox> and <HelpMainBox>
-    const [currentTopicObj, setCurrentTopicObj] = useState(null);
+
+    // TODO: What is currentTopicObj at the start?
+    const [currentTopicObj, setCurrentTopicObj] = useState<Feature>();
 
     // These 3 states toggle the visibility of the 3 help components: <HelpIntroBox>, <HelpNudgeBox>, and <HelpMainBox>
     const [doesWantHelp, setDoesWantHelp] = useState(false);
@@ -33,7 +35,7 @@ function App() {
 
     // Logic for what happens when user starts/ends hovering over a "feature".
     // Gets passed to <Workbench> and inside there to each of the <FeatureButtons>.
-    function handleMouseEnter(featureObj) {
+    function handleMouseEnter(featureObj: Feature) {
         setIsIntroBoxVisible(false);
         setCurrentTopicObj(featureObj);
         setIsLingering(true);
@@ -131,7 +133,7 @@ function App() {
 
                 {/* Explains and demonstrates how to use the feature that is, or was last, being hovered over (currentTopicObj). */}
                 <HelpMainBox
-                    isVisible={currentTopicObj && doesWantHelp}
+                    isVisible={!!currentTopicObj && doesWantHelp}
                     close={() => setDoesWantHelp(false)}
                     featureName={currentTopicObj?.featureName}
                     iconFileName={currentTopicObj?.iconFileName}

@@ -6,18 +6,33 @@ import { motion } from "framer-motion";
 //// Currently: <FloatingHelpButton>, <HelpIntroBox>, <HelpNudgeBox>, <HelpMainBox> /////////
 /////////////////////////////////////////////////////////////////////////////////////////////
 
+type FloatingHelpButtonProps = {
+    handleOnClick: React.MouseEventHandler<HTMLButtonElement>;
+};
+
 // A help button that is always visible in the lower right corner.
-export const FloatingHelpButton = ({ handleOnClick }) => {
+export const FloatingHelpButton = ({
+    handleOnClick,
+}: FloatingHelpButtonProps) => {
     return (
-        <img
-            alt="Open the Introbox"
-            src="icons/question-mark-circle-noborders.svg"
-            onClick={() => {
-                handleOnClick();
+        <button
+            onClick={e => {
+                handleOnClick(e);
             }}
             className="z-50 w-12 h-12 absolute bottom-8 right-8 cursor-pointer"
-        />
+        >
+            <img
+                alt="Open the Introbox"
+                src="icons/question-mark-circle-noborders.svg"
+            />
+        </button>
     );
+};
+
+type HelpIntroBoxProps = {
+    isVisible: boolean;
+    closeIntroBox: () => void;
+    featureIconFileNameArray: string[];
 };
 
 // A box that explains the basic idea of this app and gives a CTA. Opens when page first loads.
@@ -25,7 +40,7 @@ export const HelpIntroBox = ({
     isVisible,
     closeIntroBox,
     featureIconFileNameArray,
-}) => {
+}: HelpIntroBoxProps) => {
     const variants = {
         open: { opacity: 1, x: 0 },
         closed: { opacity: 0, x: "100%" },
@@ -105,8 +120,18 @@ export const HelpIntroBox = ({
     );
 };
 
+type HelpNudgeBoxProps = {
+    isVisible: boolean;
+    featureName: string | undefined;
+    iconFileName: string | undefined;
+};
+
 // A box that appears after hovering over a feature in the <Workbench>. Asks if user wants help and shows hotkey to open <Helpbox>
-export const HelpNudgeBox = ({ isVisible, featureName, iconFileName }) => {
+export const HelpNudgeBox = ({
+    isVisible,
+    featureName,
+    iconFileName,
+}: HelpNudgeBoxProps) => {
     const variants = {
         open: {
             opacity: 1,
@@ -164,6 +189,15 @@ export const HelpNudgeBox = ({ isVisible, featureName, iconFileName }) => {
     );
 };
 
+type HelpMainBoxProps = {
+    isVisible: boolean;
+    close: () => void;
+    featureName: string | undefined;
+    iconFileName: string | undefined;
+    helpDescription: string | undefined;
+    helpDemoWebmFilename: string | undefined;
+};
+
 // A box that explains and demonstrates how to use the feature that is, or was last, being hovered over.
 export const HelpMainBox = ({
     isVisible,
@@ -172,7 +206,7 @@ export const HelpMainBox = ({
     iconFileName,
     helpDescription,
     helpDemoWebmFilename,
-}) => {
+}: HelpMainBoxProps) => {
     const variants = {
         open: {
             opacity: 1,

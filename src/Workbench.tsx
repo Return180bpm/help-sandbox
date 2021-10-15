@@ -1,34 +1,48 @@
 import React from "react";
+import { Feature } from "features";
 
 //////////////////////////////////////////////////////////////////////////////////
 //// <Workbench> is the main area where a user would perform some kind of work ///
 //////////////////////////////////////////////////////////////////////////////////
 
+type FeatureButtonProps = {
+    featureFunction: (inputString: string) => string;
+    handleMouseEnter: React.MouseEventHandler<HTMLButtonElement>;
+    handleMouseLeave: React.MouseEventHandler<HTMLButtonElement>;
+    featureName: string;
+    iconFileName: string;
+};
 // Buttons in the <Workbench>
 // Their icons are intentionally a little obscure, as a way to simulate an app with novel features.
 const FeatureButton = ({
-    onClickFunction,
-    onMouseEnterFunction,
-    onMouseLeaveFunction,
+    featureFunction,
+    handleMouseEnter,
+    handleMouseLeave,
     featureName,
     iconFileName,
-}) => {
+}: FeatureButtonProps) => {
     const handleOnClick = () => {
         // Get the string that's in the input field
-        const inputString = document.getElementById("inputField").value;
+        const inputField = document.getElementById(
+            "inputField"
+        ) as HTMLInputElement;
+        const inputString = inputField.value;
 
         // Apply a transforming function to the input
-        const outputString = onClickFunction(inputString);
+        const outputString = featureFunction(inputString);
 
         // Put outputString where it belongs
-        document.getElementById("outputField").value = outputString;
+        const outputField = document.getElementById(
+            "outputField"
+        ) as HTMLInputElement;
+        outputField.value = outputString;
     };
 
     return (
         <button
             onClick={() => handleOnClick()}
-            onMouseEnter={() => onMouseEnterFunction()}
-            onMouseLeave={() => onMouseLeaveFunction()}
+            onMouseEnter={e => handleMouseEnter(e)}
+            onMouseLeave={e => handleMouseLeave(e)}
             id={featureName}
             className="w-8 h-8"
         >
@@ -41,12 +55,18 @@ const FeatureButton = ({
     );
 };
 
+type WorkbenchProps = {
+    allFeaturesArr: Feature[];
+    handleMouseEnter: (featureObj: Feature) => void;
+    handleMouseLeave: () => void;
+};
+
 // The <Workbench> stands for the main area where the user would interact and do most of their work in a real app.
 export default function Workbench({
     allFeaturesArr,
     handleMouseEnter,
     handleMouseLeave,
-}) {
+}: WorkbenchProps) {
     return (
         <div id="workbench" className="section-box w-96 rounded-lg shadow-sm">
             <div
@@ -68,20 +88,25 @@ export default function Workbench({
                     id="buttonContainer"
                     className="w-full flex justify-center gap-4"
                 >
-                    {allFeaturesArr.map(featureObj => (
-                        <FeatureButton
-                            onClickFunction={featureObj.featureFunction}
-                            onMouseEnterFunction={() => {
-                                handleMouseEnter(featureObj);
-                            }}
-                            onMouseLeaveFunction={() => {
-                                handleMouseLeave();
-                            }}
-                            featureName={featureObj.featureName}
-                            key={featureObj.featureName}
-                            iconFileName={featureObj.iconFileName}
-                        />
-                    ))}
+                    {allFeaturesArr.map(featureObj => {
+                        // console.log(
+                        //     "featureObj.featureName: " + featureObj.featureName
+                        // );
+                        return (
+                            <FeatureButton
+                                featureFunction={featureObj.featureFunction}
+                                handleMouseEnter={e => {
+                                    handleMouseEnter(featureObj);
+                                }}
+                                handleMouseLeave={() => {
+                                    handleMouseLeave();
+                                }}
+                                featureName={featureObj.featureName}
+                                key={featureObj.featureName}
+                                iconFileName={featureObj.iconFileName}
+                            />
+                        );
+                    })}
                 </div>
                 <input
                     type="text"
