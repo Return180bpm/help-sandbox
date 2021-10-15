@@ -26,7 +26,9 @@ function App() {
     // Gets passed to <HelpNudgeBox> and <HelpMainBox>
 
     // TODO: What is currentTopicObj at the start?
-    const [currentTopicObj, setCurrentTopicObj] = useState<Feature>();
+    const [currentTopicObj, setCurrentTopicObj] = useState<Feature | null>(
+        null
+    );
 
     // These 3 states toggle the visibility of the 3 help components: <HelpIntroBox>, <HelpNudgeBox>, and <HelpMainBox>
     const [doesWantHelp, setDoesWantHelp] = useState(false);
