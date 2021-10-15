@@ -24,6 +24,8 @@ function App() {
     // This state holds the feature that the user is currently hovering over (or was just hovering over).
     // This is used to give contextual help.
     // Gets passed to <HelpNudgeBox> and <HelpMainBox>
+
+    // TODO: What is currentTopicObj at the start?
     const [currentTopicObj, setCurrentTopicObj] = useState<Feature>();
 
     // These 3 states toggle the visibility of the 3 help components: <HelpIntroBox>, <HelpNudgeBox>, and <HelpMainBox>
@@ -131,7 +133,7 @@ function App() {
 
                 {/* Explains and demonstrates how to use the feature that is, or was last, being hovered over (currentTopicObj). */}
                 <HelpMainBox
-                    isVisible={currentTopicObj && doesWantHelp}
+                    isVisible={!!currentTopicObj && doesWantHelp}
                     close={() => setDoesWantHelp(false)}
                     featureName={currentTopicObj?.featureName}
                     iconFileName={currentTopicObj?.iconFileName}

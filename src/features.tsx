@@ -46,7 +46,7 @@ export interface Feature {
     helpDescription: string;
     helpDemoWebmFilename: string;
 }
-const allFeaturesArr: Array<Feature> = new Array();
+const allFeaturesArr: Feature[] = [];
 
 // Create and export all the features in an array.
 export function initFeatures() {
