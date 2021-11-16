@@ -1,12 +1,42 @@
 # helper sandbox
 
-A place for prototyping help systems
+A place for prototyping help systems.
+
+### [See it live](https://return180bpm.github.io/helper-sandbox/)
 
 ---
 
 <a id="general-idea"> </a>
 
 ## General Idea
+
+This was a personal learning project inspired by years of using apps with bad onboarding. Apps that offered a host of features but failed to teach me how to use them. Instead, I went on searching for guides and tutorials somewhere else. 
+
+I think apps could do better. I love strong, resourceful communities helping each other out, but I'm fairly sure some people get lost in the chaos of it all (because I do sometimes) or simply don't want to invest the time and energy required to gather these resources. Instead, I plead for on-site help systems that guide people efficiently into being competent users and achieving their tasks.
+
+_helper sandbox_ is a place to create better onboarding experiences.     
+
+**Problem**
+
+* _Create an onboarding experience that stays on site_
+* Bring the ecosystems of guides and tutorials to the help section, and ease new users into more complex workflows
+* In short, find a way to offer users effective help right where they are: inside of your app
+
+**Approach**
+
+* Take hovering the mouse cursor over an icon as an indicator of curiosity/desire to know more/need for help
+* Design a 2-step user flow for getting help, with keyboard commands for convenience
+* Implement a scalable data solution allowing for features to be paired with related help-content (see [/src/features.tsx](https://github.com/Return180bpm/helper-sandbox/blob/master/src/features.tsx))
+
+**Result**
+
+* A robust implementation based on TypeScript and Tailwind CSS that's set up for future up-scaling and re-designs, if desired
+* A working, mid-fi prototype that offers some insights into 2-step help systems
+* Several lessons learned on a personal level. Read about it in the [Development Story](#development-story) below :).
+
+---
+
+## Current Implementation
 
 Currently, this app contains this user flow:
 
@@ -19,8 +49,6 @@ https://user-images.githubusercontent.com/59713582/136013950-90fe2c57-093e-41da-
 > --> you press a hotkey
 >
 > --> a help box shows you contextual help about the thing you were hovering over.
-
-This was a learning project with a focus on front end design. Read about how it went in the [Development Story](#development-story) section below!
 
 ---
 
